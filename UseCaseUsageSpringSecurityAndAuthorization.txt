@@ -1,0 +1,44 @@
+Use Cases
+1. User Login
+Description: A user attempts to log in to the web application.
+Actors: User
+Preconditions: The user has a valid account with credentials (username and password).
+Postconditions: The user is authenticated and receives an access token.
+2. Administrator Login
+Description: An administrator logs into the system with elevated privileges.
+Actors: Administrator
+Preconditions: The administrator has valid credentials and is marked as an administrator in the system.
+Postconditions: The administrator is authenticated and receives an access token with admin privileges.
+3. Access Protected Resource
+Description: An authenticated user or administrator attempts to access a resource that requires authentication.
+Actors: User, Administrator
+Preconditions: The user or administrator is logged in and has a valid access token.
+Postconditions: The resource is accessed if the user has the required permissions; otherwise, access is denied.
+4. Role Management
+Description: An administrator manages user roles and permissions.
+Actors: Administrator
+Preconditions: The administrator is logged in with the appropriate privileges.
+Postconditions: User roles and permissions are updated in the system.
+Acceptance Tests
+1. User Login Test
+Given: A user with a valid username and password.
+When: The user submits their credentials to the login endpoint.
+Then: The user should receive an HTTP 200 response with an access token in the response body.
+2. Administrator Login Test
+Given: An administrator with valid credentials.
+When: The administrator submits their credentials to the login endpoint.
+Then: The administrator should receive an HTTP 200 response with an access token and appropriate role-based claims.
+3. Access Protected Resource Test
+Given: An authenticated user with a valid access token.
+When: The user tries to access a protected resource.
+Then: If the user has the required permissions, they should receive an HTTP 200 response with the requested data; otherwise, an HTTP 403 (Forbidden) response should be returned.
+4. Invalid Login Attempt Test
+Given: A user with an incorrect username or password.
+When: The user submits these credentials to the login endpoint.
+Then: The user should receive an HTTP 401 (Unauthorized) response, indicating authentication failure.
+5. Role Management Test
+Given: An authenticated administrator.
+When: The administrator updates the role of a user.
+Then: The system should update the user’s role, and the user should have access to resources according to the new role permissions. Verification should include checking access to previously restricted resources.
+These use cases and acceptance tests provide a comprehensive view of the login and access control features, ensuring that authentication and authorization are properly managed and secure.
+
