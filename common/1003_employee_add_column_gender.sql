@@ -1,0 +1,1 @@
+ALTER TABLE `employee` ADD COLUMN IF NOT EXISTS `gender` VARCHAR(255);
